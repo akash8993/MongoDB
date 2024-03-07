@@ -2,7 +2,9 @@ package com.mongodb.mongo.controller;
 
 import com.mongodb.mongo.model.Student;
 import com.mongodb.mongo.repository.StudentRepository;
+import com.mongodb.mongo.studentService.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ public class StudentController {
     @Autowired
     private final StudentRepository studentRepository;
 
+    @Autowired
+    private final StudentService service;
     @PostMapping("/save")
     public ResponseEntity<Student> saveStudent(@RequestBody Student student)
     {
@@ -62,6 +66,12 @@ public class StudentController {
         List<Student> data= studentRepository.findPersonAgeBetweenExcludingFields(min,max);
 
         return data;
+    }
+
+    @GetMapping("/getOldestPerson")
+    public List<Document>  getOldestPerson()
+    {
+        return service.getOldestPersonByCity();
     }
 
 }

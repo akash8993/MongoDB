@@ -1,6 +1,7 @@
 package com.mongodb.mongo.repository;
 
 import com.mongodb.mongo.model.Student;
+import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -18,4 +19,7 @@ public interface StudentRepository extends MongoRepository<Student, String> {
 
     @Query(value = "{'age':{$gt:?0, $lt :?1}}", fields = "{addressList:0}")
     List<Student> findPersonAgeBetweenExcludingFields(Integer min, Integer max);
+
+
+//    Page<Student> search(String name, Integer minAge, Integer maxAge, String city);
 }
