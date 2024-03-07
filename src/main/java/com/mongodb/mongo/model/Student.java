@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +23,10 @@ public class Student {
     private String address;
 
     private int age;
+
+    @DocumentReference(collection = "student-category")
+    private StudentCategory studentCategory;
+
+    @DocumentReference(collection = "student-marks")
+    private StudentMarks studentMarks;
 }
